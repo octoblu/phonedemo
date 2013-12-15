@@ -13,11 +13,11 @@
 }
 .demo-headline {
   color: #1abc9c;
-  font: 500 90px/1.1 "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font: 700 110px/1.1 "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   margin-bottom: 50px;
   padding: 40px 0;
   text-align: center;
-  word-wrap: break-word;
+  /*word-wrap: break-word;*/
   margin-top: 2px;
 }
 .demo-row {
@@ -323,10 +323,10 @@
     width: auto;
   }
   .demo-headline {
-    font-size: 84px !important;
+    font-size: 70px !important;
     text-align: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
   }
   .demo-inline {
     display: block;
