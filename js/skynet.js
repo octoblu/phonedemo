@@ -17,12 +17,12 @@ function loadScript(url, callback)
 
 var authenticate = function() {
 
-    // skynet = io.connect('http://skynet.im', {
-    //     port: 80
-    // });
-    skynet = io.connect('http://localhost', {
-        port: 3000
+    skynet = io.connect('http://skynet.im', {
+        port: 80
     });
+    // skynet = io.connect('http://localhost', {
+    //     port: 3000
+    // });
 
     skynet.on('connect', function(){
       console.log('Requesting websocket connection to Skynet');
