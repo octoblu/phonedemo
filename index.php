@@ -57,7 +57,7 @@
 
         $('#button-on').on('click', function() {
 
-          // $("#led-state").html("ON");
+          $("#led-state").html("ON");
           skynet.emit('message', {
             "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
             "message": {
@@ -70,7 +70,7 @@
 
         $('#button-off').on('click', function() {
 
-          // $("#led-state").html("OFF");
+          $("#led-state").html("OFF");
           skynet.emit('message', {
             "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
             "message": {
