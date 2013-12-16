@@ -22,7 +22,7 @@
 
     <script src="js/skynet.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>
-    <!-- // <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> -->
+    <!-- // <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
     <script>
       var skynetConfig = {
         "uuid": "f1b7fe90-653b-11e3-b2eb-91cf874fce76",
@@ -32,6 +32,8 @@
         console.log('UUID/token not authorized');
       };          
       function skynetReady() {
+
+        $("#switcher").removeAttr("disabled");
       
         // Reset light to off
         skynet.emit('message', {
@@ -96,11 +98,19 @@
               <h3>Turn on/off Arduino LED</h3>
 
               <center>
-                <!-- <div class="ptl" > -->
-                  <div class="switch switch-square" >
-                    <input id="switcher" type="checkbox"/>
+<!--                   <div id="switchdiv" class="switch switch-square switch-off switch-animate" >
+                    <input id="switcher" name="switcher" type="checkbox" disabled/>
                   </div>
-                <!-- </div>/.demo-col -->
+ -->                  
+                  <div class="switch switch-square" >
+                    <input id="switcher" type="checkbox" disabled/>
+                  </div>
+
+
+
+
+
+
               </center>
 
           </div>
@@ -121,6 +131,7 @@
     <script src="js/bootstrap-select.js"></script>
     <script src="js/bootstrap-switch.js"></script>
     <script src="js/flatui-checkbox.js"></script>
+    <!-- // <script src="js/flatui-checkbox-002.js"></script> -->
     <script src="js/flatui-radio.js"></script>
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/jquery.placeholder.js"></script>
