@@ -32,20 +32,26 @@
         $("button").removeAttr("disabled");
       
         // Reset light to off
+        // skynet.emit('message', {
+        //   "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+        //   "message": {
+        //   "red":"off"
+        // }}, function(data){
+        //   console.log(data);
+        // });     
         skynet.emit('message', {
-          "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
-          "message": {
-          "red":"off"
-        }}, function(data){
+          "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+          "message": "off"
+        }, function(data){
           console.log(data);
         });     
 
         skynet.on('message', function(data){
           // console.log('message received');
           console.log(data);
-          if(data.red == "on"){
+          if(data.message.red == "on"){
             $("#led-state").html("ON");
-          } else if(data.red == "off") {
+          } else if(data.message.red == "off") {
             $("#led-state").html("OFF");
           }
 
@@ -59,10 +65,9 @@
 
           $("#led-state").html("ON");
           skynet.emit('message', {
-            "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
-            "message": {
-            "red":"on"
-          }}, function(data){
+            "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+            "message": "on"
+          }, function(data){
             console.log(data);
           });            
 
@@ -72,10 +77,9 @@
 
           $("#led-state").html("OFF");
           skynet.emit('message', {
-            "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
-            "message": {
-            "red":"off"
-          }}, function(data){
+            "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+            "message": "off"
+          }, function(data){
             console.log(data);
           });     
 
@@ -95,7 +99,7 @@
       <center>
 
         <h1 class="hero-unit" style="">Skynet</h1>
-        <h2>Turn on/off Arduino LED</h2>
+        <h2>Arduino LED</h2>
         <h2><div id="led-state">OFF</div></h2>
 
         <div class="btn-group">
