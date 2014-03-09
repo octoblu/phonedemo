@@ -8,7 +8,6 @@
 
     <!-- Loading Bootstrap -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-switch.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="images/favicon.ico">
 
@@ -30,24 +29,30 @@
       };          
       function skynetReady() {
 
-        $('#mySwitch').bootstrapSwitch('setActive', true);
+        $("button").removeAttr("disabled");
       
         // Reset light to off
+        // skynet.emit('message', {
+        //   "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+        //   "message": {
+        //   "red":"off"
+        // }}, function(data){
+        //   console.log(data);
+        // });     
         skynet.emit('message', {
-          "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
-          "message": {
-          "red":"off"
-        }}, function(data){
+          "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+          "payload": "off"
+        }, function(data){
           console.log(data);
         });     
 
         skynet.on('message', function(data){
           // console.log('message received');
           console.log(data);
-          if(data.red == "on"){
-            $('#mySwitch').bootstrapSwitch('setState', true);
-          } else if(data.red == "off") {
-            $('#mySwitch').bootstrapSwitch('setState', false);
+          if(data.payload.red == "on"){
+            $("#led-state").html("ON");
+          } else if(data.payload.red == "off") {
+            $("#led-state").html("OFF");
           }
 
         });
@@ -56,51 +61,30 @@
 
       $( document ).ready(function() {
 
+        $('#button-on').on('click', function() {
 
-        $('#label-toggle-switch').on('click', function(e, data) {
-          switchClicked();
+          $("#led-state").html("ON");
+          skynet.emit('message', {
+            "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+            "payload": "on"
+          }, function(data){
+            console.log(data);
+          });            
+
         });
-        // $( "#mySwitch" ).click(function() {
-        //   switchClicked();
-        // });
-        // $('.label-toggle-switch').on('switch-change', function (e, data) {
-            // alert(data.value);
-        // $('#label-toggle-switch').on('click', function(e, data) {
-        // $( "span" ).click(function() {
-        // $('#mySwitch').on('switch-change', function (e, data) {
-          // var $el = $(data.el)
-            // , value = data.value;
-          // console.log(e, $el, value);
 
-        function switchClicked(){
-          var value = $('#mySwitch').bootstrapSwitch('status');
-          console.log(value);
+        $('#button-off').on('click', function() {
 
-          if(value == true){
+          $("#led-state").html("OFF");
+          skynet.emit('message', {
+            "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
+            "payload": "off"
+          }, function(data){
+            console.log(data);
+          });     
 
-            $('#mySwitch').bootstrapSwitch('setState', true);
-            skynet.emit('message', {
-              "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
-              "message": {
-              "red":"on"
-            }}, function(data){
-              console.log(data);
-            });            
+        });
 
-          } else {
-
-            $('#mySwitch').bootstrapSwitch('setState', false);
-            skynet.emit('message', {
-              "devices": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
-              "message": {
-              "red":"off"
-            }}, function(data){
-              console.log(data);
-            });            
-
-          }
-
-        };        
 
       });
 
@@ -116,13 +100,12 @@
 
         <h1 class="hero-unit" style="">Skynet</h1>
         <h2>Arduino LED</h2>
+        <h2><div id="led-state">OFF</div></h2>
 
-        <!-- https://github.com/nostalgiaz/bootstrap-switch -->
-        <label id="label-toggle-switch">Click
-          <div id="mySwitch" class="label-toggle-switch make-switch switch-large" data-on="success" data-off="danger" data-on-label="ON" data-off-label="OFF" data-text-label="LED">  
-              <input type="radio" disabled>
-          </div>
-        </label>
+        <div class="btn-group">
+          <button id="button-on" type="button" class="btn btn-lg btn-success" disabled><span class="glyphicon glyphicon-plus-sign"></span></button>
+          <button id="button-off" type="button" class="btn btn-lg btn-danger" disabled><span class="glyphicon glyphicon-minus-sign"></span></button>
+        </div>
 
       </center>
 

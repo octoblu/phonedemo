@@ -41,7 +41,7 @@
         // });     
         skynet.emit('message', {
           "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
-          "message": "off"
+          "payload": "off"
         }, function(data){
           console.log(data);
         });     
@@ -49,9 +49,9 @@
         skynet.on('message', function(data){
           // console.log('message received');
           console.log(data);
-          if(data.message.red == "on"){
+          if(data.payload.red == "on"){
             $("#led-state").html("ON");
-          } else if(data.message.red == "off") {
+          } else if(data.payload.red == "off") {
             $("#led-state").html("OFF");
           }
 
@@ -66,7 +66,7 @@
           $("#led-state").html("ON");
           skynet.emit('message', {
             "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
-            "message": "on"
+            "payload": "on"
           }, function(data){
             console.log(data);
           });            
@@ -78,7 +78,7 @@
           $("#led-state").html("OFF");
           skynet.emit('message', {
             "devices": "dbb14ce1-a29a-11e3-ad2d-c5fcbb05136c",
-            "message": "off"
+            "payload": "off"
           }, function(data){
             console.log(data);
           });     
